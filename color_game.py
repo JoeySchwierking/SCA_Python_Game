@@ -23,6 +23,7 @@ Buzz = GPIO.PWM(buzz_pin,1000)
 #this script appends a value to a list
 def append_list():
 	g = 0
+	Round = 0
 	colors = []
 	frequencies = []
 	while True:
@@ -57,6 +58,27 @@ def append_list():
 			i = i + 1
 			if i == g:
 				loop = True
+		guesses = []
+		i = 0
+		h = 1
+		loop = False
+		print 'Round', Round
+		while loop == False:
+			print 'Guess color #',h
+			rinput = raw_input('(Choices: R, G, B, or Y) ')
+			guesses.append(rinput)
+			i = i + 1
+			h = h + 1
+			if i == g:
+				loop = True
+		if guesses == colors:
+			print 'You are correct!\n\n\n\n\n\n\n\n\n'
+			print colors
+			Round = Round + 1
+		else:
+			print 'The colors were ',colors
+			LED.destroy()
+			exit()
 
 if __name__ == '__main__':
 	try:
